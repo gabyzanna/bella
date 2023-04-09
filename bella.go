@@ -1,11 +1,11 @@
 package bella
 
 import (
-	"go.mongodb.org/mongo-driver/bson"
 	"context"
 	"fmt"
 	"os"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -29,7 +29,7 @@ func InsertOneDoc(db string, collection string, doc interface{}) (insertedID int
 }
 
 func InsertMataKuliah(namamatakuliah string, kodematakuliah string, dosen string, sks string) (InsertedID interface{}) {
-	var matakuliah matakuliah
+	var matakuliah Matakuliah
 	matakuliah.NamaMatakuliah = namamatakuliah
 	matakuliah.KodeMatakuliah = kodematakuliah
 	matakuliah.Dosen = dosen
@@ -39,7 +39,7 @@ func InsertMataKuliah(namamatakuliah string, kodematakuliah string, dosen string
 }
 
 func InsertJadwalKuliah(hari string, jammulai string, jamselesai string, ruang string) (InsertedID interface{}) {
-	var jadwalkuliah jadwalkuliah
+	var jadwalkuliah Jadwalkuliah
 	jadwalkuliah.Hari = hari
 	jadwalkuliah.JamMulai = jammulai
 	jadwalkuliah.JamSelesai = jamselesai
@@ -49,7 +49,7 @@ func InsertJadwalKuliah(hari string, jammulai string, jamselesai string, ruang s
 }
 
 func InsertKelas(ruang string, kapasitasmhs string) (InsertedID interface{}) {
-	var kelas kelas
+	var kelas Kelas
 	kelas.Ruang = ruang
 	kelas.KapasitasMhs = kapasitasmhs
 	
@@ -57,7 +57,7 @@ func InsertKelas(ruang string, kapasitasmhs string) (InsertedID interface{}) {
 }
 
 func InsertDosen(namadosen string, kodedosen string, matakuliah string) (InsertedID interface{}) {
-	var dosen dosen
+	var dosen Dosen
 	dosen.NamaDosen = namadosen
 	dosen.KodeDosen = kodedosen
 	dosen.Matakuliah = matakuliah
@@ -66,7 +66,7 @@ func InsertDosen(namadosen string, kodedosen string, matakuliah string) (Inserte
 }
 
 func InsertMahasiswa(namamhs string, kelas string, prodi string) (InsertedID interface{}) {
-	var mahasiswa mahasiswa
+	var mahasiswa Mahasiswa
 	mahasiswa.NamaMhs = namamhs
 	mahasiswa.Kelas = kelas
 	mahasiswa.Prodi = prodi
@@ -74,7 +74,7 @@ func InsertMahasiswa(namamhs string, kelas string, prodi string) (InsertedID int
 	return InsertOneDoc("DatabaseTugas3", "mahasiswa", mahasiswa)
 }
 
-func GetDatamatakuliah(kodematakuliah string) (data []matakuliah) {
+func GetDataMatakuliah(kodematakuliah string) (data []Matakuliah) {
 	user := MongoConnect("DatabaseTugas3").Collection("matakuliah")
 	filter := bson.M{"kodemtkuliah": kodematakuliah}
 	cursor, err := user.Find(context.TODO(), filter)
@@ -88,7 +88,7 @@ func GetDatamatakuliah(kodematakuliah string) (data []matakuliah) {
 	return
 }
 
-func GetDatajadwalkuliah(hari string) (data []jadwalkuliah) {
+func GetDataJadwalkuliah(hari string) (data []Jadwalkuliah) {
 	user := MongoConnect("DatabaseTugas3").Collection("jadwalkuliah")
 	filter := bson.M{"hari": hari}
 	cursor, err := user.Find(context.TODO(), filter)
@@ -102,7 +102,7 @@ func GetDatajadwalkuliah(hari string) (data []jadwalkuliah) {
 	return
 }
 
-func GetDatakelas(ruang string) (data []kelas) {
+func GetDataKelas(ruang string) (data []Kelas) {
 	user := MongoConnect("DatabaseTugas3").Collection("kelas")
 	filter := bson.M{"ruang": ruang}
 	cursor, err := user.Find(context.TODO(), filter)
@@ -116,7 +116,7 @@ func GetDatakelas(ruang string) (data []kelas) {
 	return
 }
 
-func GetDatadosen(namadosen string) (data []dosen) {
+func GetDataDosen(namadosen string) (data []Dosen) {
 	user := MongoConnect("DatabaseTugas3").Collection("dosen")
 	filter := bson.M{"namadosen": namadosen}
 	cursor, err := user.Find(context.TODO(), filter)
@@ -130,7 +130,7 @@ func GetDatadosen(namadosen string) (data []dosen) {
 	return
 }
 
-func GetDatamahasiswa(namamhs string) (data []mahasiswa) {
+func GetDataMahasiswa(namamhs string) (data []Mahasiswa) {
 	user := MongoConnect("DatabaseTugas3").Collection("mahasiswa")
 	filter := bson.M{"namamhs": namamhs}
 	cursor, err := user.Find(context.TODO(), filter)
