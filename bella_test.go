@@ -46,3 +46,33 @@ func TestInsertMahasiswa(t *testing.T) {
 	hasil := InsertMahasiswa(namamhs, kelas, prodi)
 	fmt.Println(hasil)
 }
+
+func TestGetDataMatakuliah(t *testing.T) {
+	kodemtkuliah := "TI41278"
+	dt := GetDataMatakuliah(kodemtkuliah)
+	fmt.Println(dt)
+}
+
+func TestGetDataJadwalkuliah(t *testing.T) {
+	hari := "Rabu"
+	dt := GetDataJadwalkuliah(hari)
+	fmt.Println(dt)
+}
+
+func TestGetDataKelas(t *testing.T) {
+	ruang := "310"
+	dt := GetDataJadwalkuliah(ruang)
+	fmt.Println(dt)
+}
+
+func TestGetDataDosen(t *testing.T) {
+	namadosen := "NOVIANA RIZA"
+	dt := GetDataJadwalkuliah(namadosen)
+	fmt.Println(dt)
+}
+
+func TestGetDataMahasiswa(t *testing.T) {
+	namamhs := "ARDIVA PUTRI TAVA PRAMESWARI"
+	dt := GetDataJadwalkuliah(namamhs)
+	fmt.Println(dt)
+}
