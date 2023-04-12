@@ -61,18 +61,18 @@ func TestGetDataJadwalkuliah(t *testing.T) {
 
 func TestGetDataKelas(t *testing.T) {
 	ruang := "310"
-	dt := GetDataJadwalkuliah(ruang)
+	dt := GetDataKelas(ruang)
 	fmt.Println(dt)
 }
 
 func TestGetDataDosen(t *testing.T) {
 	namadosen := "NOVIANA RIZA"
-	dt := GetDataJadwalkuliah(namadosen)
+	dt := GetDataDosen(namadosen)
 	fmt.Println(dt)
 }
 
 func TestGetDataMahasiswa(t *testing.T) {
 	namamhs := "ARDIVA PUTRI TAVA PRAMESWARI"
-	dt := GetDataJadwalkuliah(namamhs)
+	dt := GetDataMahasiswa(namamhs)
 	fmt.Println(dt)
 }
