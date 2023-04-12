@@ -29,7 +29,7 @@ func InsertOneDoc(db string, collection string, doc interface{}) (insertedID int
 }
 
 func InsertMataKuliah(namamatakuliah string, kodematakuliah string, dosen string, sks string) (InsertedID interface{}) {
-	var matakuliah Matakuliah
+	var matakuliah Matakuliahbel
 	matakuliah.NamaMatakuliah = namamatakuliah
 	matakuliah.KodeMatakuliah = kodematakuliah
 	matakuliah.Dosen = dosen
@@ -39,7 +39,7 @@ func InsertMataKuliah(namamatakuliah string, kodematakuliah string, dosen string
 }
 
 func InsertJadwalKuliah(hari string, jammulai string, jamselesai string, ruang string) (InsertedID interface{}) {
-	var jadwalkuliah Jadwalkuliah
+	var jadwalkuliah Jadwalkuliahbel
 	jadwalkuliah.Hari = hari
 	jadwalkuliah.JamMulai = jammulai
 	jadwalkuliah.JamSelesai = jamselesai
@@ -49,7 +49,7 @@ func InsertJadwalKuliah(hari string, jammulai string, jamselesai string, ruang s
 }
 
 func InsertKelas(ruang string, kapasitasmhs string) (InsertedID interface{}) {
-	var kelas Kelas
+	var kelas Kelasbel
 	kelas.Ruang = ruang
 	kelas.KapasitasMhs = kapasitasmhs
 	
@@ -57,7 +57,7 @@ func InsertKelas(ruang string, kapasitasmhs string) (InsertedID interface{}) {
 }
 
 func InsertDosen(namadosen string, kodedosen string, matakuliah string) (InsertedID interface{}) {
-	var dosen Dosen
+	var dosen Dosenbel
 	dosen.NamaDosen = namadosen
 	dosen.KodeDosen = kodedosen
 	dosen.Matakuliah = matakuliah
@@ -66,7 +66,7 @@ func InsertDosen(namadosen string, kodedosen string, matakuliah string) (Inserte
 }
 
 func InsertMahasiswa(namamhs string, kelas string, prodi string) (InsertedID interface{}) {
-	var mahasiswa Mahasiswa
+	var mahasiswa Mahasiswabel
 	mahasiswa.NamaMhs = namamhs
 	mahasiswa.Kelas = kelas
 	mahasiswa.Prodi = prodi
@@ -74,7 +74,7 @@ func InsertMahasiswa(namamhs string, kelas string, prodi string) (InsertedID int
 	return InsertOneDoc("DatabaseTugas3", "mahasiswa", mahasiswa)
 }
 
-func GetDataMatakuliah(kodematakuliah string) (data []Matakuliah) {
+func GetDataMatakuliah(kodematakuliah string) (data []Matakuliahbel) {
 	user := MongoConnect("DatabaseTugas3").Collection("matakuliah")
 	filter := bson.M{"kodemtkuliah": kodematakuliah}
 	cursor, err := user.Find(context.TODO(), filter)
@@ -88,7 +88,7 @@ func GetDataMatakuliah(kodematakuliah string) (data []Matakuliah) {
 	return
 }
 
-func GetDataJadwalkuliah(hari string) (data []Jadwalkuliah) {
+func GetDataJadwalkuliah(hari string) (data []Jadwalkuliahbel) {
 	user := MongoConnect("DatabaseTugas3").Collection("jadwalkuliah")
 	filter := bson.M{"hari": hari}
 	cursor, err := user.Find(context.TODO(), filter)
@@ -102,7 +102,7 @@ func GetDataJadwalkuliah(hari string) (data []Jadwalkuliah) {
 	return
 }
 
-func GetDataKelas(ruang string) (data []Kelas) {
+func GetDataKelas(ruang string) (data []Kelasbel) {
 	user := MongoConnect("DatabaseTugas3").Collection("kelas")
 	filter := bson.M{"ruang": ruang}
 	cursor, err := user.Find(context.TODO(), filter)
@@ -116,7 +116,7 @@ func GetDataKelas(ruang string) (data []Kelas) {
 	return
 }
 
-func GetDataDosen(namadosen string) (data []Dosen) {
+func GetDataDosen(namadosen string) (data []Dosenbel) {
 	user := MongoConnect("DatabaseTugas3").Collection("dosen")
 	filter := bson.M{"namadosen": namadosen}
 	cursor, err := user.Find(context.TODO(), filter)
@@ -130,7 +130,7 @@ func GetDataDosen(namadosen string) (data []Dosen) {
 	return
 }
 
-func GetDataMahasiswa(namamhs string) (data []Mahasiswa) {
+func GetDataMahasiswa(namamhs string) (data []Mahasiswabel) {
 	user := MongoConnect("DatabaseTugas3").Collection("mahasiswa")
 	filter := bson.M{"namamhs": namamhs}
 	cursor, err := user.Find(context.TODO(), filter)
